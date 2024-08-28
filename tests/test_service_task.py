@@ -1,9 +1,15 @@
+import pytest
+
 from bpmn_parser.service_task import ServiceTask, ServiceTaskElement
 
 
-def test_service_task(root):
-    service_task = ServiceTask(root)
-    assert service_task.list == [
+@pytest.fixture
+def service_task(bpmn_parser):
+    return ServiceTask(bpmn_parser.root)
+
+
+def test_service_task(bpmn_parser, service_task):
+    data_to_assert = [
         ServiceTaskElement(
             id='Activity_ConsultaDigesto',
             name='v0 - Consulta Digesto',
@@ -33,3 +39,19 @@ def test_service_task(root):
             type='external',
         ),
     ]
+    assert service_task.list == data_to_assert
+    assert bpmn_parser.service_task.list == data_to_assert
+
+
+def test_get(service_task):
+    element = service_task.get('Activity_DefineFluxoSaida')
+    assert element.id == 'Activity_DefineFluxoSaida'
+    assert element.name == 'v0 - Define fluxo saída'
+    assert element.execution_listeners == []
+    assert element.topic_name == 'define-fluxo-saida'
+    assert element.type == 'external'
+
+
+def test_get_not_found(service_task):
+    element = service_task.get('')
+    assert element is None

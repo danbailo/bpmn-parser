@@ -1,3 +1,5 @@
+import pytest
+
 from bpmn_parser.sequence_flow import (
     ConditionExpressionElement,
     SequenceFlow,
@@ -5,9 +7,13 @@ from bpmn_parser.sequence_flow import (
 )
 
 
-def test_sequence_flow(root):
-    sequence_flow = SequenceFlow(root)
-    assert sequence_flow.list == [
+@pytest.fixture
+def sequence_flow(bpmn_parser):
+    return SequenceFlow(bpmn_parser.root)
+
+
+def test_sequence_flow(bpmn_parser, sequence_flow):
+    data_to_assert = [
         SequenceFlowElement(
             id='Flow_11qv0wo',
             name=None,
@@ -192,3 +198,26 @@ def test_sequence_flow(root):
             condition_expression=None,
         ),
     ]
+    assert sequence_flow.list == data_to_assert
+    assert bpmn_parser.sequence_flow.list == data_to_assert
+
+
+def test_get(sequence_flow):
+    element = sequence_flow.get('Flow_07n3h98')
+
+    assert element.id == 'Flow_07n3h98'
+    assert element.name == 'Sim'
+    assert element.source_ref == 'Gateway_13p78ag'
+    assert element.target_ref == 'Activity_Triagem'
+
+    condition_expression = ConditionExpressionElement(
+        type='bpmn:tFormalExpression',
+        condition='${pre_triagem__sucesso == false}',
+    )
+    assert element.condition_expression.type == condition_expression.type
+    assert element.condition_expression.condition == condition_expression.condition
+
+
+def test_get_not_found(sequence_flow):
+    element = sequence_flow.get('')
+    assert element is None

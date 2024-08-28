@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from lxml.etree import _Element
 
-from bpmn_parser.base import BPMNElement, Task
+from bpmn_parser.task import BPMNElement, Task
 
 
 @dataclass

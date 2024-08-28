@@ -22,11 +22,20 @@ class TaskElement(BPMNElement):
     execution_listeners: list[ExecutionListener]
 
 
+class BPMNTagNotFound(Exception):
+    message = 'BPMN tag not found!'
+
+    def __init__(self):
+        super().__init__(self.message)
+
+
 class Task(ABC):
     def __init__(self, root: _Element):
         self.root = root
+
         if not (match := re.search(r'{(?P<tag>.+)}', self.root.tag)):
-            raise Exception('BPMN tag not found!')
+            raise BPMNTagNotFound()
+
         self.bpmn_tag = match['tag']
         self.camunda_tag = 'http://camunda.org/schema/1.0/bpmn'
         self.xml_schema_tag = 'http://www.w3.org/2001/XMLSchema-instance'
@@ -50,10 +59,10 @@ class Task(ABC):
 
     @property
     @abstractmethod
-    def list(self):
+    def list(self):  # pragma: no cover
         pass
 
     @property
     @abstractmethod
-    def get(self):
+    def get(self):  # pragma: no cover
         pass
