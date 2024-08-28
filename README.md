@@ -1,6 +1,6 @@
 # bpmn_parser
 
-[![Tests and Linting](https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml) ![Coverage Status](./assets/coverage-badge.svg)
+[![Publish to PyPI](https://github.com/danbailo/bpmn-parser/actions/workflows/publish.yaml/badge.svg?branch=main)](https://github.com/danbailo/bpmn-parser/actions/workflows/publish.yaml) [![Tests and Linting](https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml) ![Coverage Status](./assets/coverage-badge.svg)
 
 Simple structure that I([@danbailo](https://github.com/danbailo)) like use to build projects.
 
