@@ -21,16 +21,5 @@ jobs:
       id-token: write
     steps:
 
-    - name: Setup Poetry
-      uses: snok/install-poetry@v1
-      with:
-        version: latest
-
-    - name: Install dependencies
-      run: poetry install
-
-    - name: Build package
-      run: poetry build
-
     - name: Publish package distributions to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
