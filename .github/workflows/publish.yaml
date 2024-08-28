@@ -19,7 +19,27 @@ jobs:
       url: https://pypi.org/project/bpmn_parser/
     permissions:
       id-token: write
+
+    strategy:
+      matrix:
+        python: ["3.10", "3.11", "3.12"]
+
     steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python }}
+
+    - name: Setup Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: latest
+
+    - name: Install dependencies
+      run: make install
 
     - name: Build package
       run: poetry build
