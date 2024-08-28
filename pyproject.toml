@@ -22,9 +22,6 @@ lxml-stubs = "^0.5.1"
 [tool.coverage.report]
 skip_empty = true
 show_missing = true
-omit = [
-    "*main*",
-]
 sort="Cover"
 
 [tool.ruff]
