@@ -19,7 +19,8 @@ jobs:
       name: pypi
       url: https://pypi.org/project/bpmn_parser/
     permissions:
-      id-token: write
+      contents: 'write'
+      id-token: 'write'
 
     steps:
     - name: Checkout Code
@@ -46,7 +47,7 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git add pyproject.toml
         git commit -m "Bump version to $(poetry version -s)"
-        git tag v$(poetry version -s)      
+        git tag v$(poetry version -s)
 
     - name: Push changes
       uses: ad-m/github-push-action@v0.6.0
