@@ -57,7 +57,7 @@ jobs:
         tags: true
 
     - name: Create GitHub Release
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@v1.14.0
       with:
         tag: v$(poetry version -s)
         name: Release v$(poetry version -s)
