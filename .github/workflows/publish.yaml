@@ -56,6 +56,16 @@ jobs:
         branch: main
         tags: true
 
+    - name: Create GitHub Release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: v$(poetry version -s)
+        name: Release v$(poetry version -s)
+        body: |
+          ## Changes
+          - Bumped version to $(poetry version -s)
+        token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Build package
       run: poetry build
 
