@@ -6,7 +6,7 @@ authors = ["Daniel Bailo <danbailoufms@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 lxml = "^5.3.0"
 typer = "^0.12.5"
 
