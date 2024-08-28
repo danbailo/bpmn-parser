@@ -48,3 +48,9 @@ jobs:
 
     - name: Run tests
       run: make tests
+
+    - name: Update coverage badge if necessary
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: Updated coverage badge
+        file_pattern: 'assets/coverage-badge.svg'
