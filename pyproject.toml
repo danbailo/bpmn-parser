@@ -7,6 +7,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+lxml = "^5.3.0"
+typer = "^0.12.5"
 
 [tool.poetry.group.dev.dependencies]
 ipdb = "^0.13.13"
@@ -25,7 +27,6 @@ skip_empty = true
 show_missing = true
 omit = [
     "*main*",
-    "decorators.py"
 ]
 sort="Cover"
 
@@ -39,17 +40,9 @@ select = ["I", "F", "T100"]
 quote-style = "single"
 docstring-code-format = true
 
-[tool.ruff.lint.pylint]
-max-returns = 2
-
 [tool.mypy]
 disable_error_code = [
-    "union-attr", "import-untyped", "arg-type",
-    "return-value", "return", "override",
-    "assignment", "var-annotated"
-]
-plugins = [
-  "pydantic.mypy"
+    "union-attr", "arg-type",
 ]
 
 [build-system]

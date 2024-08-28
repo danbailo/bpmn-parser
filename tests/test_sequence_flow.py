@@ -1,4 +1,4 @@
-from legalops_commons.utils.bpmn.sequence_flow import (
+from bpmn_parser.sequence_flow import (
     ConditionExpressionElement,
     SequenceFlow,
     SequenceFlowElement,

@@ -1,4 +1,4 @@
-from legalops_commons.utils.bpmn.service_task import ServiceTask, ServiceTaskElement
+from bpmn_parser.service_task import ServiceTask, ServiceTaskElement
 
 
 def test_service_task(root):

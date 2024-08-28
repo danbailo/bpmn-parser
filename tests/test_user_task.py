@@ -1,5 +1,5 @@
-from legalops_commons.utils.bpmn.base import ExecutionListener
-from legalops_commons.utils.bpmn.user_task import UserTask, UserTaskElement
+from bpmn_parser.base import ExecutionListener
+from bpmn_parser.user_task import UserTask, UserTaskElement
 
 
 def test_user_task(root):

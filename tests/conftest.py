@@ -1,13 +1,13 @@
 import pytest
 
-from legalops_commons.utils.bpmn.parser import (
+from bpmn_parser.parser import (
     BPMNParser,
 )
 
 
 @pytest.fixture
 def bpmn_parser():
-    return BPMNParser('samples/bpmn_parser/flow.bpmn')
+    return BPMNParser('resources/flow.bpmn')
 
 
 @pytest.fixture

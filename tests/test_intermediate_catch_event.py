@@ -1,4 +1,4 @@
-from legalops_commons.utils.bpmn.intermediate_catch_event import (
+from bpmn_parser.intermediate_catch_event import (
     IntermediateCatchEvent,
     IntermediateCatchEventElement,
 )

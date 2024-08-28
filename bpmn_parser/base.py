@@ -25,7 +25,9 @@ class TaskElement(BPMNElement):
 class Task(ABC):
     def __init__(self, root: _Element):
         self.root = root
-        self.bpmn_tag = re.search(r'{(?P<tag>.+)}', self.root.tag).groupdict()['tag']
+        if not (match := re.search(r'{(?P<tag>.+)}', self.root.tag)):
+            raise Exception('BPMN tag not found!')
+        self.bpmn_tag = match['tag']
         self.camunda_tag = 'http://camunda.org/schema/1.0/bpmn'
         self.xml_schema_tag = 'http://www.w3.org/2001/XMLSchema-instance'
 

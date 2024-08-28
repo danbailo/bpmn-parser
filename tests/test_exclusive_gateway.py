@@ -1,4 +1,4 @@
-from legalops_commons.utils.bpmn.exclusive_gateway import (
+from bpmn_parser.exclusive_gateway import (
     ExclusiveGateway,
     ExclusiveGatewayElement,
 )

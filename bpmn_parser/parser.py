@@ -2,11 +2,11 @@ from pathlib import Path
 
 from lxml.etree import XMLParser, _Element, _ElementTree, parse
 
-from legalops_commons.utils.bpmn.exclusive_gateway import ExclusiveGateway
-from legalops_commons.utils.bpmn.intermediate_catch_event import IntermediateCatchEvent
-from legalops_commons.utils.bpmn.sequence_flow import SequenceFlow
-from legalops_commons.utils.bpmn.service_task import ServiceTask
-from legalops_commons.utils.bpmn.user_task import UserTask
+from bpmn_parser.exclusive_gateway import ExclusiveGateway
+from bpmn_parser.intermediate_catch_event import IntermediateCatchEvent
+from bpmn_parser.sequence_flow import SequenceFlow
+from bpmn_parser.service_task import ServiceTask
+from bpmn_parser.user_task import UserTask
 
 
 class BPMNParser:
