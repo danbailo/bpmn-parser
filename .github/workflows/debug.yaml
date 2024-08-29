@@ -4,12 +4,16 @@ jobs:
   randomly-failing-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate 0 or 1
-        id: generate_number
-        run: |
-            NEW_VERSION=$RANDOM >> $GITHUB_OUTPUT
-            echo "nova versão é $NEW_VERSION"
-
-      - name: Pass or fail
-        run: |
-          echo "valor é ${{ steps.generate_number.outputs.NEW_VERSION }}"
+        - name: Set environment variable
+          id: set_var
+          run: echo "MY_VAR=HelloWorld" >> $GITHUB_ENV
+          
+        - name: Use environment variable in the same job
+          run: echo "The value of MY_VAR is ${{ env.MY_VAR }}"
+    
+        - name: Set output variable
+          id: generate_output
+          run: echo "::set-output name=myOutput::${{ env.MY_VAR }}"
+    
+        - name: Use output in another step
+          run: echo "The output value is ${{ steps.generate_output.outputs.myOutput }}"
