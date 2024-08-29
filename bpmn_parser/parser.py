@@ -10,6 +10,7 @@ from bpmn_parser.user_task import UserTask
 
 
 class BPMNParser:
+    """"""
     def __init__(self, path: Path):
         xml_parser = XMLParser(remove_blank_text=True)
         self.tree: _ElementTree = parse(path, xml_parser)
