@@ -12,7 +12,8 @@ jobs:
           run: echo "The value of MY_VAR is ${{ env.MY_VAR }}"
     
         - name: Set output
-          run: echo "{name}={value}" >> $GITHUB_OUTPUT
+          id: generate_output
+          run: echo "myOutput=${{ env.MY_VAR }}" >> $GITHUB_OUTPUT
     
         - name: Use output in another step
           run: echo "The output value is ${{ steps.generate_output.outputs.myOutput }}"
