@@ -59,8 +59,7 @@ jobs:
     - name: Create GitHub Release
       uses: ncipollo/release-action@v1.14.0
       with:
-        tag: poetry version -s
-        name: Release v$(poetry version -s)
+        tag: v$(poetry version -s)
         body: |
           ## Changes
           - Bumped version to $(poetry version -s)
