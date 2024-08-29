@@ -7,7 +7,7 @@ jobs:
       - name: Generate 0 or 1
         id: generate_number
         run: |
-            NEW_VERSION=$(poetry version -s) >> $GITHUB_OUTPUT
+            NEW_VERSION=$RANDOM >> $GITHUB_OUTPUT
             echo "nova versão é $NEW_VERSION"
 
       - name: Pass or fail
