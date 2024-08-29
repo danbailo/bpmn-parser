@@ -47,7 +47,7 @@ jobs:
         poetry version patch
 
         # Captura a nova versão
-        echo "NEW_VERSION=$(poetry version -s)" >> $GITHUB_OUTPUT
+        NEW_VERSION=$(poetry version -s) >> $GITHUB_OUTPUT
 
         # Adiciona e commita as mudanças
         git config --local user.name "github-actions[bot]"

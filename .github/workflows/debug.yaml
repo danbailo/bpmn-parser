@@ -1,0 +1,15 @@
+name: Generate random failure
+on: push
+jobs:
+  randomly-failing-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate 0 or 1
+        id: generate_number
+        run: |
+            NEW_VERSION=$(poetry version -s) >> $GITHUB_OUTPUT
+            echo "nova versão é $NEW_VERSION"
+
+      - name: Pass or fail
+        run: |
+          echo "valor é ${{ steps.generate_number.outputs.NEW_VERSION }}"
