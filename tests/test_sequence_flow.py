@@ -1,6 +1,6 @@
 import pytest
 
-from bpmn_parser.sequence_flow import (
+from bpmn_parser._sequence_flow import (
     ConditionExpressionElement,
     SequenceFlow,
     SequenceFlowElement,
@@ -18,27 +18,27 @@ def test_sequence_flow(bpmn_parser, sequence_flow):
             id='Flow_11qv0wo',
             name=None,
             source_ref='Gateway_09uiyn5',
-            target_ref='Activity_TratativaManual',
+            target_ref='Activity_HandleDataManually',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_1r8m54y',
             name=None,
-            source_ref='Activity_TratativaManual',
-            target_ref='Activity_DefineFluxoSaida',
+            source_ref='Activity_HandleDataManually',
+            target_ref='Activity_ValidateData',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_1nvrsyh',
             name=None,
             source_ref='Gateway_04151fm',
-            target_ref='Activity_ConsultaDigesto',
+            target_ref='Activity_QueryData',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_07p3i1y',
             name=None,
-            source_ref='Activity_ConsultaDigesto',
+            source_ref='Activity_QueryData',
             target_ref='Gateway_1431tq3',
             condition_expression=None,
         ),
@@ -46,21 +46,21 @@ def test_sequence_flow(bpmn_parser, sequence_flow):
             id='Flow_0xokps6',
             name=None,
             source_ref='Gateway_07nni2c',
-            target_ref='Activity_PreTriagem',
+            target_ref='Activity_PreScreening',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_1kwf52v',
             name=None,
-            source_ref='Activity_PreTriagem',
+            source_ref='Activity_PreScreening',
             target_ref='Gateway_0djd7kh',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_1tdfyor',
-            name='Documento\nE-mail',
-            source_ref='Gateway_09tged2',
-            target_ref='Activity_OCRPreExtracao',
+            name='input 1\ninput 2',
+            source_ref='Gateway_InputTypes',
+            target_ref='Activity_SomeExternalTask',
             condition_expression=ConditionExpressionElement(
                 type='bpmn:tFormalExpression',
                 condition="${execution.getVariable('dg_event_event_type') == 'belisarius event'}",
@@ -69,13 +69,13 @@ def test_sequence_flow(bpmn_parser, sequence_flow):
         SequenceFlowElement(
             id='Flow_0d7vqji',
             name=None,
-            source_ref='Activity_OCRPreExtracao',
+            source_ref='Activity_SomeExternalTask',
             target_ref='Gateway_1mzb26a',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_0lag6f3',
-            name='Sim',
+            name='Yes',
             source_ref='Gateway_1431tq3',
             target_ref='Gateway_09uiyn5',
             condition_expression=ConditionExpressionElement(
@@ -85,33 +85,33 @@ def test_sequence_flow(bpmn_parser, sequence_flow):
         ),
         SequenceFlowElement(
             id='Flow_0cqiw0t',
-            name='Não Judicial',
+            name='Flow 2',
             source_ref='Gateway_0ony4ks',
             target_ref='Gateway_09uiyn5',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_1k0bams',
-            name='Não',
+            name='Not',
             source_ref='Gateway_1431tq3',
-            target_ref='Event_EsperaConsultaDigesto',
+            target_ref='Event_WaitToQueryData',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_1pwfmlq',
             name=None,
-            source_ref='Event_EsperaConsultaDigesto',
+            source_ref='Event_WaitToQueryData',
             target_ref='Gateway_04151fm',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_0yljlu7',
-            name='Judicial',
+            name='Flow 1',
             source_ref='Gateway_0ony4ks',
             target_ref='Gateway_04151fm',
             condition_expression=ConditionExpressionElement(
                 type='bpmn:tFormalExpression',
-                condition="${execution.getVariable('_esteira') == 'Judicial' || execution.getVariable('triagem__tipo_numero_identificador') == 'CNJ'}",
+                condition="${execution.getVariable('flow') == 'flow_1' || execution.getVariable('flow') != 'flow_2'}",
             ),
         ),
         SequenceFlowElement(
@@ -124,20 +124,20 @@ def test_sequence_flow(bpmn_parser, sequence_flow):
         SequenceFlowElement(
             id='Flow_12kpqpg',
             name=None,
-            source_ref='Activity_Triagem',
+            source_ref='Activity_ManuallyScreening',
             target_ref='Gateway_0v0migw',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_0kt31nl',
-            name='Não',
+            name='Not',
             source_ref='Gateway_13p78ag',
             target_ref='Gateway_0v0migw',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_1ab06b8',
-            name='Sim',
+            name='Yes',
             source_ref='Gateway_0djd7kh',
             target_ref='Gateway_13p78ag',
             condition_expression=ConditionExpressionElement(
@@ -147,39 +147,39 @@ def test_sequence_flow(bpmn_parser, sequence_flow):
         ),
         SequenceFlowElement(
             id='Flow_07n3h98',
-            name='Sim',
+            name='Yes',
             source_ref='Gateway_13p78ag',
-            target_ref='Activity_Triagem',
+            target_ref='Activity_ManuallyScreening',
             condition_expression=ConditionExpressionElement(
                 type='bpmn:tFormalExpression',
-                condition='${pre_triagem__sucesso == false}',
+                condition='${pre_screening_success == false}',
             ),
         ),
         SequenceFlowElement(
             id='Flow_0ij3smu',
-            name='Distribuição\nIntimação elet.',
-            source_ref='Gateway_09tged2',
+            name='input 3\ninput 4\ninput 5',
+            source_ref='Gateway_InputTypes',
             target_ref='Gateway_1mzb26a',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_1n8eg7h',
             name=None,
-            source_ref='Activity_DefineFluxoSaida',
+            source_ref='Activity_ValidateData',
             target_ref='Event_0ru28nf',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_0dg38wp',
-            name='Não',
+            name='Not',
             source_ref='Gateway_0djd7kh',
-            target_ref='Event_EsperaPreTriagem',
+            target_ref='Event_WaitToPreScreening',
             condition_expression=None,
         ),
         SequenceFlowElement(
             id='Flow_0ycna54',
             name=None,
-            source_ref='Event_EsperaPreTriagem',
+            source_ref='Event_WaitToPreScreening',
             target_ref='Gateway_07nni2c',
             condition_expression=None,
         ),
@@ -194,7 +194,7 @@ def test_sequence_flow(bpmn_parser, sequence_flow):
             id='Flow_0csizns',
             name=None,
             source_ref='Event_0i7m04u',
-            target_ref='Gateway_09tged2',
+            target_ref='Gateway_InputTypes',
             condition_expression=None,
         ),
     ]
@@ -206,13 +206,13 @@ def test_get(sequence_flow):
     element = sequence_flow.get('Flow_07n3h98')
 
     assert element.id == 'Flow_07n3h98'
-    assert element.name == 'Sim'
+    assert element.name == 'Yes'
     assert element.source_ref == 'Gateway_13p78ag'
-    assert element.target_ref == 'Activity_Triagem'
+    assert element.target_ref == 'Activity_ManuallyScreening'
 
     condition_expression = ConditionExpressionElement(
         type='bpmn:tFormalExpression',
-        condition='${pre_triagem__sucesso == false}',
+        condition='${pre_screening_success == false}',
     )
     assert element.condition_expression.type == condition_expression.type
     assert element.condition_expression.condition == condition_expression.condition

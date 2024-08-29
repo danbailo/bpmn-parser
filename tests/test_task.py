@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 from lxml.etree import _Element
 
-from bpmn_parser.task import BPMNTagNotFound, Task
+from bpmn_parser._task import BPMNTagNotFound, Task
 
 
 class SomeTask(Task):
@@ -18,7 +18,7 @@ class SomeTask(Task):
         pass
 
 
-@patch('bpmn_parser.task.re.search', return_value=None)
+@patch('bpmn_parser._task.re.search', return_value=None)
 def test_bpmn_tag_not_found(mocked_re_search: MagicMock, bpmn_parser):
     with pytest.raises(BPMNTagNotFound):
         SomeTask(bpmn_parser.root)
