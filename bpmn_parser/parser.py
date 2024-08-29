@@ -13,7 +13,7 @@ class BPMNParser:
     """Example"""
 
     def __init__(self, path: Path):
-        xml_parser = XMLParser(remove_blank_text=True)
+        xml_parser = XMLParaser(remove_blank_text=True)
         self.tree: _ElementTree = parse(path, xml_parser)
         self.root: _Element = self.tree.getroot()
 
