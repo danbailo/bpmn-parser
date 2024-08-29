@@ -40,6 +40,7 @@ jobs:
       run: make install
 
     - name: Bump version
+      id: bump-version
       run: |
         # Incrementa a versão (altere 'patch' para 'minor' ou 'major' conforme necessário)
         poetry version patch
@@ -66,11 +67,11 @@ jobs:
     - name: Create GitHub Release
       uses: ncipollo/release-action@v1
       with:
-        tag: v${{ steps.pypi-publish.outputs.NEW_VERSION }}
-        name: Release v${{ steps.pypi-publish.outputs.NEW_VERSION }}
+        tag: v${{ steps.bump-version.outputs.NEW_VERSION }}
+        name: Release v${{ steps.bump-version.outputs.NEW_VERSION }}
         body: |
           ## Changes
-          - Bumped version to v${{ steps.pypi-publish.outputs.NEW_VERSION }}
+          - Bumped version to v${{ steps.bump-version.outputs.NEW_VERSION }}
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build package
