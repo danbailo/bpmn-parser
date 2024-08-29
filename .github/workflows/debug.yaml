@@ -1,0 +1,13 @@
+name: Generate random failure
+on: push
+jobs:
+  randomly-failing-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate 0 or 1
+        id: generate_number
+        run: random_number=$(($RANDOM % 2))
+
+      - name: Pass or fail
+        run: |
+          echo "valor é ${{ steps.generate_number.outputs.random_number }}"
