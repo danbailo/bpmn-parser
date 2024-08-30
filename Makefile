@@ -14,9 +14,6 @@ SOURCE = bpmn_parser
 TESTS = tests
 
 
-build:
-	@docker build -t $(REPOSITORY):latest .
-
 install:
 	@echo "\nInstalling project..."
 	@poetry install --no-root
