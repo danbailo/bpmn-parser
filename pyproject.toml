@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bpmn_parser"
-version = "1.0.5"
+version = "1.0.6"
 description = "A simple BPMN Parser implemented in Python"
 authors = ["Daniel Bailo <danbailoufms@gmail.com>"]
 readme = "README.md"
