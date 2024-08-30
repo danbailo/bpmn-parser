@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Union
 
 from lxml.etree import _Element
 
@@ -15,7 +16,7 @@ class ConditionExpressionElement:
 class SequenceFlowElement(BPMNElement):
     source_ref: str
     target_ref: str
-    condition_expression: ConditionExpressionElement | None
+    condition_expression: Union[ConditionExpressionElement, None]
 
 
 class SequenceFlow(Task):

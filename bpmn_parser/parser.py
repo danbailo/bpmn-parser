@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Union
 
 from lxml.etree import XMLParser, _Element, _ElementTree, parse
 
@@ -19,7 +20,7 @@ class BPMNParser:
         file_path (Path): path of bpmn file.
     """
 
-    def __init__(self, file_path: Path | str):
+    def __init__(self, file_path: Union[Path, str]):
         if isinstance(file_path, str):
             file_path = Path(file_path)
 
