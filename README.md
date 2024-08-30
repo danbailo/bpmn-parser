@@ -1,7 +1,6 @@
 # BPMN Parser
 
-[![Publish to PyPI](https://github.com/danbailo/bpmn-parser/actions/workflows/publish.yaml/badge.svg?branch=main)](https://github.com/danbailo/bpmn-parser/actions/workflows/publish.yaml)
-[![Tests and Linting](https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml) ![Python Versions](https://img.shields.io/pypi/pyversions/bpmn-parser?color=g) ![PyPI - Version](https://img.shields.io/pypi/v/bpmn-parser?color=%2334D058&label=pypi%20package) ![Coverage Status](./assets/coverage-badge.svg)
+[![Publish to PyPI](https://github.com/danbailo/bpmn-parser/actions/workflows/publish.yaml/badge.svg)](https://github.com/danbailo/bpmn-parser/actions/workflows/publish.yaml) [![Tests and Linting](https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml) ![Python Versions](https://img.shields.io/pypi/pyversions/bpmn-parser?color=g) ![PyPI - Version](https://img.shields.io/pypi/v/bpmn-parser?color=%2334D058&label=pypi%20package) ![Coverage Status](./assets/coverage-badge.svg)
 
 A simple BPMN Parser implemented in Python.
 
