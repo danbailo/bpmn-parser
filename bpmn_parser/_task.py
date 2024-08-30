@@ -4,6 +4,8 @@ from dataclasses import dataclass
 
 from lxml.etree import _Element
 
+from bpmn_parser.exceptions import BPMNTagNotFound
+
 
 @dataclass
 class ExecutionListener:
@@ -20,13 +22,6 @@ class BPMNElement:
 @dataclass
 class TaskElement(BPMNElement):
     execution_listeners: list[ExecutionListener]
-
-
-class BPMNTagNotFound(Exception):
-    message = 'BPMN tag not found!'
-
-    def __init__(self):
-        super().__init__(self.message)
 
 
 class Task(ABC):

@@ -1,7 +1,7 @@
 import pytest
 
-from bpmn_parser.task import ExecutionListener
-from bpmn_parser.user_task import UserTask, UserTaskElement
+from bpmn_parser._task import ExecutionListener
+from bpmn_parser._user_task import UserTask, UserTaskElement
 
 
 @pytest.fixture
@@ -12,32 +12,32 @@ def user_task(bpmn_parser):
 def test_user_task(bpmn_parser, user_task):
     data_to_assert = [
         UserTaskElement(
-            id='Activity_TratativaManual',
-            name='v0 - ${_fluxo} - Tratativa manual',
+            id='Activity_HandleDataManually',
+            name='Handle Data Manually',
             execution_listeners=[
                 ExecutionListener(
-                    expression="${execution.setVariable('tarefa_criada_em', dateTime().plusHours(3).toDate())}",
+                    expression="${execution.setVariable('task_created_at', dateTime().plusHours(3).toDate())}",
                     event='start',
                 )
             ],
-            form_key='embedded:deployment:TratativaManualPage.json',
-            candidate_groups=None,
+            form_key='embedded:deployment:HandleDataManually.json',
+            candidate_groups='some-group',
             due_date='${dateTime().plusDays(2).toDate()}',
-            priority="${execution.getVariable('dg_event_object_data__prioritario') == true || execution.getVariable('triagem__tarefa_prioritaria') == true ? 75 : 50}",
+            priority="${execution.getVariable('is_priority') == true ? 75 : 50}",
         ),
         UserTaskElement(
-            id='Activity_Triagem',
-            name='v0 - ${_fluxo} - Triagem',
+            id='Activity_ManuallyScreening',
+            name='Manually Screening',
             execution_listeners=[
                 ExecutionListener(
-                    expression="${execution.setVariable('tarefa_criada_em', dateTime().plusHours(3).toDate())}",
+                    expression="${execution.setVariable('task_created_at', dateTime().plusHours(3).toDate())}",
                     event='start',
                 )
             ],
-            form_key='embedded:deployment:TriagemPage.json',
-            candidate_groups=None,
+            form_key='embedded:deployment:ManuallyScreening.json',
+            candidate_groups='some-group',
             due_date='${dateTime().plusDays(2).toDate()}',
-            priority="${execution.getVariable('dg_event_object_data__prioritario') == true ? 75 : 50}",
+            priority="${execution.getVariable('is_priority') == true ? 75 : 50}",
         ),
     ]
     assert user_task.list == data_to_assert
@@ -45,20 +45,19 @@ def test_user_task(bpmn_parser, user_task):
 
 
 def test_get(user_task):
-    element = user_task.get('Activity_Triagem')
+    element = user_task.get('Activity_ManuallyScreening')
 
-    assert element.id == 'Activity_Triagem'
-    assert element.name == 'v0 - ${_fluxo} - Triagem'
-    assert element.form_key == 'embedded:deployment:TriagemPage.json'
-    assert element.candidate_groups == None
+    assert element.id == 'Activity_ManuallyScreening'
+    assert element.name == 'Manually Screening'
+    assert element.form_key == 'embedded:deployment:ManuallyScreening.json'
+    assert element.candidate_groups == 'some-group'
     assert element.due_date == '${dateTime().plusDays(2).toDate()}'
     assert (
-        element.priority
-        == "${execution.getVariable('dg_event_object_data__prioritario') == true ? 75 : 50}"
+        element.priority == "${execution.getVariable('is_priority') == true ? 75 : 50}"
     )
 
     execution_listener = ExecutionListener(
-        expression="${execution.setVariable('tarefa_criada_em', dateTime().plusHours(3).toDate())}",
+        expression="${execution.setVariable('task_created_at', dateTime().plusHours(3).toDate())}",
         event='start',
     )
     assert element.execution_listeners[0].expression == execution_listener.expression

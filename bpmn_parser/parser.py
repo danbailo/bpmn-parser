@@ -2,19 +2,33 @@ from pathlib import Path
 
 from lxml.etree import XMLParser, _Element, _ElementTree, parse
 
-from bpmn_parser.exclusive_gateway import ExclusiveGateway
-from bpmn_parser.intermediate_catch_event import IntermediateCatchEvent
-from bpmn_parser.sequence_flow import SequenceFlow
-from bpmn_parser.service_task import ServiceTask
-from bpmn_parser.user_task import UserTask
+from bpmn_parser._exclusive_gateway import ExclusiveGateway
+from bpmn_parser._intermediate_catch_event import IntermediateCatchEvent
+from bpmn_parser._sequence_flow import SequenceFlow
+from bpmn_parser._service_task import ServiceTask
+from bpmn_parser._user_task import UserTask
+from bpmn_parser.exceptions import NotBPMNFile
 
 
 class BPMNParser:
-    """Example"""
+    """Implement a Python API to a BPMN. With this, is possible to get and list some
+    attributes of BPMN, such as: service tasks, user tasks, sequence flows, etc.
 
-    def __init__(self, path: Path):
-        xml_parser = XMLParser(remove_blank_text=True)
-        self.tree: _ElementTree = parse(path, xml_parser)
+
+    Args:
+        file_path (Path): path of bpmn file.
+    """
+
+    def __init__(self, file_path: Path | str):
+        if isinstance(file_path, str):
+            file_path = Path(file_path)
+
+        if file_path.suffix != '.bpmn':
+            raise NotBPMNFile()
+
+        self.file_path = file_path
+        self.xml_parser = XMLParser(remove_blank_text=True)
+        self.tree: _ElementTree = parse(file_path, self.xml_parser)
         self.root: _Element = self.tree.getroot()
 
     @property
@@ -36,3 +50,12 @@ class BPMNParser:
     @property
     def exclusive_gateway(self):
         return ExclusiveGateway(self.root)
+
+    @property
+    def refresh(self):
+        """Refresh the BPMN if the file get some modify."""
+        self.tree = parse(self.file_path, self.xml_parser)
+        self.root = self.tree.getroot()
+
+    def __repr__(self) -> str:
+        return f'{self.__class__.__name__}(file_path={self.root.base})'
