@@ -42,6 +42,7 @@ check_types:
 tests:
 	@echo "\nRunning Tests"
 	@poetry run pytest -s $(TESTS) --cov=$(SOURCE)
+	@poetry run coverage xml
 
 check_all: check_format check_lint check_types tests
 	@echo "\nAll checks have been passed!"
