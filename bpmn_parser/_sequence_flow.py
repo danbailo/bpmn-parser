@@ -8,18 +8,37 @@ from bpmn_parser._task import BPMNElement, Task
 
 @dataclass
 class ConditionExpressionElement:
+    """Parse an Condition Expression from BPMN.
+    
+    Attributes:
+        type (str): type of expression in BPMN.
+        condition (str): condition implemented in BPMN.
+    """
     type: str
     condition: str
 
 
 @dataclass
 class SequenceFlowElement(BPMNElement):
+    """Parse an Sequence Flow from BPMN.
+    
+    Attributes:
+        source_ref (str): source reference from this element in BPMN.
+        target_ref (str): target reference from this element in BPMN.
+        condition_expression (Union[ConditionExpressionElement, None]): a condition
+            expression implemented in this element in BPMN.
+    """    
     source_ref: str
     target_ref: str
     condition_expression: Union[ConditionExpressionElement, None]
 
 
 class SequenceFlow(Task):
+    """An API from Sequence Flow from BPMN. This classes holds `SequenceFlowElement` as elements.
+    
+    Attributes:
+        root (_Element): root of BPMN loaded as XML.
+    """    
     def __init__(self, root: _Element):
         super().__init__(root)
 

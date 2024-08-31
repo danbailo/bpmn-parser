@@ -15,6 +15,12 @@ class ExecutionListener:
 
 @dataclass
 class BPMNElement:
+    """A base of all BPMN elements parsed by BPMN Parser.
+    
+    Attributes:
+        id (str): ID of element in BPMN.
+        name (str): name of element in BPMN.
+    """
     id: str
     name: str
 

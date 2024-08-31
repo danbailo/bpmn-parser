@@ -7,10 +7,16 @@ from bpmn_parser._task import BPMNElement, Task
 
 @dataclass
 class ExclusiveGatewayElement(BPMNElement):
+    """Parse an Exclusive Gateway from BPMN"""
     pass
 
 
 class ExclusiveGateway(Task):
+    """An API from Exclusive Gateway from BPMN. This classes holds `ExclusiveGatewayElement` as elements.
+    
+    Attributes:
+        root (_Element): root of BPMN loaded as XML.
+    """
     def __init__(self, root: _Element):
         super().__init__(root)
 

@@ -34,22 +34,27 @@ class BPMNParser:
 
     @property
     def service_task(self):
+        """Parse all Service Tasks from this BPMN."""
         return ServiceTask(self.root)
 
     @property
     def user_task(self):
+        """Parse all User Task from this BPMN."""
         return UserTask(self.root)
 
     @property
     def sequence_flow(self):
+        """Parse all Sequence Flow from this BPMN."""
         return SequenceFlow(self.root)
 
     @property
     def intermediate_catch_event(self):
+        """Parse all Intermediate Catch Event from this BPMN."""
         return IntermediateCatchEvent(self.root)
 
     @property
     def exclusive_gateway(self):
+        """Parse all Exclusive Gateway from this BPMN."""
         return ExclusiveGateway(self.root)
 
     @property
