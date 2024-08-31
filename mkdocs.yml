@@ -1,7 +1,7 @@
 site_name: BPMN Parser
 repo_name: danbailo/bpmn-parser
 repo_url: https://github.com/danbailo/bpmn-parser
-site_description: Official documentation from BPMN Parser. A simple to use abstraction over Selenium.
+site_description: Official documentation from BPMN Parser. A simple parser to use with Python.
 site_url: https://danbailo.github.io/bpmn-parser/
 
 theme:
@@ -27,6 +27,12 @@ theme:
 
 nav:
   - Introduction: index.md
+  - BPMN Parser: bpmn_parser.md
+  - Task: task.md
+  - Exclusive Gateway: exclusive_gateway.md
+  - Intermediate Catch Event: intermediate_catch_event.md
+  - Sequence Flow: sequence_flow.md
+  - Service Task: service_task.md
   - User Task: user_task.md
 
 markdown_extensions:
@@ -43,6 +49,12 @@ markdown_extensions:
 
 plugins:
   - social
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          selection:
+            docstring_style: "google"
 
 extra_css:
   - css/termynal.css

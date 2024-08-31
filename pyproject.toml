@@ -21,6 +21,7 @@ lxml-stubs = "^0.5.1"
 [tool.poetry.group.docs.dependencies]
 mkdocs-material = {extras = ["imaging"], version = "^9.5.33"}
 mkdocs = "^1.6.1"
+mkdocstrings = {extras = ["python"], version = "^0.25.2"}
 
 [tool.coverage.report]
 skip_empty = true
