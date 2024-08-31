@@ -7,6 +7,15 @@ from bpmn_parser._task import Task, TaskElement
 
 @dataclass
 class UserTaskElement(TaskElement):
+    """Parse an Service Task from BPMN.
+
+    Attributes:
+        form_key (str): form key of element in BPMN.
+        candidate_groups (str): candidate groups of element in BPMN.
+        due_date (str): due date of element in BPMN.
+        priority (str): priority of element in BPMN.
+    """
+
     form_key: str
     candidate_groups: str
     due_date: str
@@ -14,6 +23,12 @@ class UserTaskElement(TaskElement):
 
 
 class UserTask(Task):
+    """An API from Service Task from BPMN. This classes holds `UserTaskElement` as elements.
+
+    Attributes:
+        root (_Element): root of BPMN loaded as XML.
+    """
+
     def __init__(self, root: _Element):
         super().__init__(root)
 

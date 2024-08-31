@@ -7,11 +7,24 @@ from bpmn_parser._task import Task, TaskElement
 
 @dataclass
 class ServiceTaskElement(TaskElement):
+    """Parse an Service Task from BPMN.
+
+    Attributes:
+        topic_name (str): topic name of element in BPMN.
+        type (str): type of element in BPMN.
+    """
+
     topic_name: str
     type: str
 
 
 class ServiceTask(Task):
+    """An API from Service Task from BPMN. This classes holds `ServiceTaskElement` as elements.
+
+    Attributes:
+        root (_Element): root of BPMN loaded as XML.
+    """
+
     def __init__(self, root: _Element):
         super().__init__(root)
 

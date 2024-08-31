@@ -12,9 +12,9 @@ concurrency:
 
 jobs:
 
-  python:
+  tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 5
 
     strategy:
       matrix:
@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python }}
 
@@ -49,8 +49,7 @@ jobs:
     - name: Run tests
       run: make tests
 
-    - name: Update coverage badge if necessary
-      uses: stefanzweifel/git-auto-commit-action@v5
+    - name: Upload results to Codecov
+      uses: codecov/codecov-action@v4
       with:
-        commit_message: Updated coverage badge
-        file_pattern: 'assets/coverage-badge.svg'
+        token: ${{ secrets.CODECOV_TOKEN }}

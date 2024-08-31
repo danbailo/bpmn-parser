@@ -7,10 +7,22 @@ from bpmn_parser._task import Task, TaskElement
 
 @dataclass
 class IntermediateCatchEventElement(TaskElement):
+    """Parse an Intermediate Catch Event from BPMN.
+
+    Attributes:
+        time_duration (str): time duration of element in BPMN.
+    """
+
     time_duration: str
 
 
 class IntermediateCatchEvent(Task):
+    """An API from Intermediate Catch Event from BPMN. This classes holds `IntermediateCatchEventElement` as elements.
+
+    Attributes:
+        root (_Element): root of BPMN loaded as XML.
+    """
+
     def __init__(self, root: _Element):
         super().__init__(root)
 
