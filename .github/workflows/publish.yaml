@@ -12,9 +12,9 @@ concurrency:
 jobs:
 
   pypi-publish:
-    name: Upload release to PyPI
-
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+
     permissions:
       contents: 'write'
       id-token: 'write'
