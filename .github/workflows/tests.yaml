@@ -49,8 +49,7 @@ jobs:
     - name: Run tests
       run: make tests
 
-    - name: Update coverage badge if necessary
-      uses: stefanzweifel/git-auto-commit-action@v5
+    - name: Upload results to Codecov
+      uses: codecov/codecov-action@v4
       with:
-        commit_message: Updated coverage badge
-        file_pattern: 'assets/coverage-badge.svg'
+        token: ${{ secrets.CODECOV_TOKEN }}

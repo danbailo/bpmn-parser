@@ -42,7 +42,6 @@ check_types:
 tests:
 	@echo "\nRunning Tests"
 	@poetry run pytest -s $(TESTS) --cov=$(SOURCE)
-	@poetry run coverage-badge -o assets/coverage-badge.svg -f -q
 
 check_all: check_format check_lint check_types tests
 	@echo "\nAll checks have been passed!"
