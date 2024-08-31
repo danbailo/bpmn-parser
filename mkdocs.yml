@@ -1,0 +1,52 @@
+site_name: BPMN Parser
+repo_name: danbailo/bpmn-parser
+repo_url: https://github.com/danbailo/bpmn-parser
+site_description: Official documentation from BPMN Parser. A simple to use abstraction over Selenium.
+site_url: https://danbailo.github.io/bpmn-parser/
+
+theme:
+  name: material
+  icon:
+    logo: fontawesome/solid/window-restore
+  palette:
+    - scheme: default
+      primary: green
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: green
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - search.suggest
+    - content.code.copy
+
+nav:
+  - Introduction: index.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+plugins:
+  - social
+
+extra_css:
+  - css/termynal.css
+  - css/custom.css
+
+extra_javascript:
+  - js/termynal.js
+  - js/custom.js  
