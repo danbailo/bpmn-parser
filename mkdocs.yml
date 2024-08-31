@@ -27,6 +27,7 @@ theme:
 
 nav:
   - Introduction: index.md
+  - User Task: user_task.md
 
 markdown_extensions:
   - admonition
