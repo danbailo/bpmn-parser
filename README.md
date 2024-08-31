@@ -8,9 +8,6 @@
 <a href="https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml?query=branch=main" target="_blank">
     <img src="https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml/badge.svg?branch=main" alt="Tests">
 </a>
-<a href="https://github.com/danbailo/bpmn-parser/actions/workflows/docs.yaml?query=branch=main" target="_blank">
-    <img src="https://github.com/danbailo/bpmn-parser/actions/workflows/docs.yaml/badge.svg" alt="Docs">
-</a>
 <a href="https://github.com/danbailo/bpmn-parser/actions/workflows/tests.yaml?query=branch=main" target="_blank">
     <img src="https://codecov.io/gh/danbailo/bpmn-parser/branch/main/graph/badge.svg" alt="Coverage">
 <a href="https://pypi.org/project/bpmn-parser" target="_blank">
