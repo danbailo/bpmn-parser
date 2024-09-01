@@ -221,3 +221,11 @@ def test_get(sequence_flow):
 def test_get_not_found(sequence_flow):
     element = sequence_flow.get('')
     assert element is None
+
+
+def test_len(sequence_flow):
+    assert len(sequence_flow) == 24
+
+
+def test_repr(sequence_flow):
+    assert repr(sequence_flow) == 'SequenceFlow(items=24)'

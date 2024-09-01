@@ -10,6 +10,16 @@ type(bpmn_parser.intermediate_catch_event)
 bpmn_parser._intermediate_catch_event.IntermediateCatchEvent
 ```
 
+---
+
+```python linenums="1"
+bpmn_parser.intermediate_catch_event
+```
+
+```python title="Output"
+IntermediateCatchEvent(items=2)
+```
+
 ### List
 List all intermedicate catch events elements founded in `.bpmn` file.
 ```python linenums="1"

@@ -69,12 +69,19 @@ class Task(ABC):
             )
         ]
 
-    @property
-    @abstractmethod
-    def list(self):  # pragma: no cover
-        pass
+    def get(self, id: str):
+        return next((item for item in self.list if item.id == id), None)
+
+    def __len__(self) -> int:
+        """Returns the quantity of items that have the specific property."""
+        return len(self.list)
+
+    def __repr__(self) -> str:
+        """Return a representation of the property, printing the quantity of items that
+        have the specific property."""
+        return f'{self.__class__.__name__}(items={self.__len__()})'
 
     @property
     @abstractmethod
-    def get(self):  # pragma: no cover
+    def list(self):  # pragma: no cover
         pass

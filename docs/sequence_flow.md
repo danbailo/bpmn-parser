@@ -7,7 +7,17 @@ type(bpmn_parser.sequence_flow)
 ```
 
 ```python title="Output"
-bpmn_parser._sequence_flow_.SequenceFlow
+bpmn_parser._sequence_flow.SequenceFlow
+```
+
+---
+
+```python linenums="1"
+bpmn_parser.sequence_flow
+```
+
+```python title="Output"
+SequenceFlow(items=4)
 ```
 
 ### List

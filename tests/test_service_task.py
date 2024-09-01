@@ -56,3 +56,11 @@ def test_get(service_task):
 def test_get_not_found(service_task):
     element = service_task.get('')
     assert element is None
+
+
+def test_len(service_task):
+    assert len(service_task) == 4
+
+
+def test_repr(service_task):
+    assert repr(service_task) == 'ServiceTask(items=4)'

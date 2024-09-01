@@ -7,7 +7,17 @@ type(bpmn_parser.service_task)
 ```
 
 ```python title="Output"
-bpmn_parser._service_task_.ServiceTask
+bpmn_parser._service_task.ServiceTask
+```
+
+---
+
+```python linenums="1"
+bpmn_parser.service_task
+```
+
+```python title="Output"
+ServiceTask(items=4)
 ```
 
 ### List
