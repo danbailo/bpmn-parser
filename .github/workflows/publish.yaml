@@ -15,6 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
+    environment:
+      name: pypi
+      url: https://pypi.org/p/bpmn-parser
+
     permissions:
       contents: 'write'
       id-token: 'write'
