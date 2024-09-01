@@ -56,3 +56,8 @@ def test_refresh(
         'file_path=resources/flow2.bpmn'
         ')'
     )
+    mocked_service_task.__len__.assert_called_once()
+    mocked_user_task.__len__.assert_called_once()
+    mocked_sequence_flow.__len__.assert_called_once()
+    mocked_intermediate_catch_event.__len__.assert_called_once()
+    mocked_exclusive_gateway.__len__.assert_called_once()
