@@ -10,6 +10,16 @@ type(bpmn_parser.exclusive_gateway)
 bpmn_parser._exclusive_gateway.ExclusiveGateway
 ```
 
+---
+
+```python linenums="1"
+bpmn_parser.exclusive_gateway
+```
+
+```python title="Output"
+ExclusiveGateway(items=3)
+```
+
 ### List
 List all exclusive gateways elements founded in `.bpmn` file.
 ```python linenums="1"

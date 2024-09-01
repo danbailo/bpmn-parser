@@ -7,7 +7,17 @@ type(bpmn_parser.user_task)
 ```
 
 ```python title="Output"
-bpmn_parser._user_task_.UserTask
+bpmn_parser._user_task.UserTask
+```
+
+---
+
+```python linenums="1"
+bpmn_parser.user_task
+```
+
+```python title="Output"
+UserTask(items=2)
 ```
 
 ### List
