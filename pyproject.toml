@@ -5,6 +5,13 @@ description = "A simple BPMN Parser implemented in Python"
 authors = ["Daniel Bailo <danbailoufms@gmail.com>"]
 readme = "README.md"
 
+[tool.poetry.urls]
+"Homepage" = "https://github.com/danbailo/bpmn-parser"
+"Documentation" = "https://danbailo.github.io/bpmn-parser/"
+"Repository" = "https://github.com/danbailo/bpmn-parser"
+"Issues" = "https://github.com/danbailo/bpmn-parser/issues"
+"Changelog" = "https://github.com/danbailo/bpmn-parser/releases"
+
 [tool.poetry.dependencies]
 python = "^3.9"
 lxml = "^5.3.0"
