@@ -75,8 +75,6 @@ jobs:
         body: |
           ## Changes
           - Bumped version to v${{ steps.bump_version.outputs.NEW_VERSION }}
-          
-          ## Description
           ${{ github.event.pull_request.body }}
         token: ${{ secrets.GITHUB_TOKEN }}
 
