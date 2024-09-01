@@ -41,3 +41,11 @@ def test_get(intermediate_catch_event):
 def test_get_not_found(intermediate_catch_event):
     element = intermediate_catch_event.get('')
     assert element is None
+
+
+def test_len(intermediate_catch_event):
+    assert len(intermediate_catch_event) == 2
+
+
+def test_repr(intermediate_catch_event):
+    assert repr(intermediate_catch_event) == 'IntermediateCatchEvent(items=2)'

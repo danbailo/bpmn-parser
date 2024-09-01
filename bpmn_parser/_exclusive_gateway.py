@@ -35,6 +35,3 @@ class ExclusiveGateway(Task):
                 )
             )
         return items
-
-    def get(self, id: str):
-        return next((item for item in self.list if item.id == id), None)

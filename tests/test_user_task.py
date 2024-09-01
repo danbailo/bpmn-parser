@@ -67,3 +67,11 @@ def test_get(user_task):
 def test_get_not_found(user_task):
     element = user_task.get('')
     assert element is None
+
+
+def test_len(user_task):
+    assert len(user_task) == 2
+
+
+def test_repr(user_task):
+    assert repr(user_task) == 'UserTask(items=2)'

@@ -41,3 +41,11 @@ def test_get(exclusive_gateway):
 def test_get_not_found(exclusive_gateway):
     element = exclusive_gateway.get('')
     assert element is None
+
+
+def test_len(exclusive_gateway):
+    assert len(exclusive_gateway) == 10
+
+
+def test_repr(exclusive_gateway):
+    assert repr(exclusive_gateway) == 'ExclusiveGateway(items=10)'
