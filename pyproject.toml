@@ -9,7 +9,7 @@ readme = "README.md"
 "Homepage" = "https://github.com/danbailo/bpmn-parser"
 "Documentation" = "https://danbailo.github.io/bpmn-parser/"
 "Repository" = "https://github.com/danbailo/bpmn-parser"
-"Bug" = "https://github.com/danbailo/bpmn-parser/issues"
+"Issues" = "https://github.com/danbailo/bpmn-parser/issues"
 "Changelog" = "https://github.com/danbailo/bpmn-parser/releases"
 
 [tool.poetry.dependencies]
