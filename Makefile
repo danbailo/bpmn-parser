@@ -50,8 +50,8 @@ check_all: check_format check_lint check_types tests
 prepare_env_pyenv:
 	@echo "\nPreparing virtualenv using pyenv..."
 	@pyenv update
-	@pyenv install 3.11 -s
-	@pyenv virtualenv -f 3.11 bpmn_parser-env
+	@pyenv install 3.9 -s
+	@pyenv virtualenv -f 3.9 bpmn_parser-env
 	@pyenv local bpmn_parser-env
 
 	@echo "\nInstalling poetry..."
