@@ -1,9 +1,8 @@
 name: Publish to PyPI
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [closed]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -12,6 +11,7 @@ concurrency:
 jobs:
 
   pypi-publish:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
@@ -76,7 +76,7 @@ jobs:
           ## Changes
           - Bumped version to v${{ steps.bump_version.outputs.NEW_VERSION }}
           
-          ### Pull requested descripiton          
+          ## Description
           ${{ github.event.pull_request.body }}
         token: ${{ secrets.GITHUB_TOKEN }}
 
