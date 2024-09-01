@@ -72,7 +72,7 @@ class Task(ABC):
     def get(self, id: str):
         return next((item for item in self.list if item.id == id), None)
 
-    def __len__(self) -> str:
+    def __len__(self) -> int:
         """Returns the quantity of items that have the specific property."""
         return len(self.list)
 
