@@ -56,7 +56,7 @@ class SequenceFlow(Task):
             ):
                 condition_expression = ConditionExpressionElement(
                     type=condition_expression[0].get(
-                        self._get_xml_schema_attrib('type')
+                        self._build_xml_schema_attrib('type')
                     ),
                     condition=condition_expression[0].text,
                 )
