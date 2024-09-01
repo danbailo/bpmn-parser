@@ -38,8 +38,8 @@ class ServiceTask(Task):
                 ServiceTaskElement(
                     id=service_task.get('id'),
                     name=service_task.get('name'),
-                    topic_name=service_task.get(self._get_camunda_attrib('topic')),
-                    type=service_task.get(self._get_camunda_attrib('type')),
+                    topic_name=service_task.get(self._build_camunda_attrib('topic')),
+                    type=service_task.get(self._build_camunda_attrib('type')),
                     execution_listeners=self._get_execution_listeners(service_task),
                 )
             )

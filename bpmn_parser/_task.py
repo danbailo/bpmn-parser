@@ -9,6 +9,7 @@ from bpmn_parser.exceptions import BPMNTagNotFound
 
 @dataclass
 class ExecutionListener:
+    """Parse an execution listener from an element in BPMN."""
     expression: str
     event: str
 
@@ -28,6 +29,12 @@ class BPMNElement:
 
 @dataclass
 class TaskElement(BPMNElement):
+    """A base of all Task elements parsed by BPMN Parser.
+
+    Attributes:
+        execution_listeners (list[ExecutionListener]): list of Execution Listeners of
+            this element.
+    """    
     execution_listeners: list[ExecutionListener]
 
 
@@ -42,13 +49,14 @@ class Task(ABC):
         self.camunda_tag = 'http://camunda.org/schema/1.0/bpmn'
         self.xml_schema_tag = 'http://www.w3.org/2001/XMLSchema-instance'
 
-    def _get_xml_schema_attrib(self, name: str):
+    def _build_xml_schema_attrib(self, name: str):
         return '{' f'{self.xml_schema_tag}' '}' f'{name}'
 
-    def _get_camunda_attrib(self, name: str):
+    def _build_camunda_attrib(self, name: str):
         return '{' f'{self.camunda_tag}' '}' f'{name}'
 
     def _get_execution_listeners(self, element: _Element):
+        """Get all execution listeners from the `element`."""
         return [
             ExecutionListener(
                 expression=item.get('expression'),

@@ -42,12 +42,12 @@ class UserTask(Task):
                 UserTaskElement(
                     id=user_task.get('id'),
                     name=user_task.get('name'),
-                    form_key=user_task.get(self._get_camunda_attrib('formKey')),
+                    form_key=user_task.get(self._build_camunda_attrib('formKey')),
                     candidate_groups=user_task.get(
-                        self._get_camunda_attrib('candidateGroups')
+                        self._build_camunda_attrib('candidateGroups')
                     ),
-                    due_date=user_task.get(self._get_camunda_attrib('dueDate')),
-                    priority=user_task.get(self._get_camunda_attrib('priority')),
+                    due_date=user_task.get(self._build_camunda_attrib('dueDate')),
+                    priority=user_task.get(self._build_camunda_attrib('priority')),
                     execution_listeners=self._get_execution_listeners(user_task),
                 )
             )
