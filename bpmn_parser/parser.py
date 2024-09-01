@@ -64,4 +64,13 @@ class BPMNParser:
         self.root = self.tree.getroot()
 
     def __repr__(self) -> str:
-        return f'{self.__class__.__name__}(file_path={self.root.base})'
+        return (
+            f'{self.__class__.__name__}('
+            f'service_task={len(self.service_task)}, '
+            f'user_task={len(self.user_task)}, '
+            f'sequence_flow={len(self.sequence_flow)}, '
+            f'intermediate_catch_event={len(self.intermediate_catch_event)}, '
+            f'exclusive_gateway={len(self.exclusive_gateway)}, '
+            f'file_path={self.root.base}'
+            ')'
+        )
