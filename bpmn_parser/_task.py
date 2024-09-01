@@ -10,6 +10,7 @@ from bpmn_parser.exceptions import BPMNTagNotFound
 @dataclass
 class ExecutionListener:
     """Parse an execution listener from an element in BPMN."""
+
     expression: str
     event: str
 
@@ -34,7 +35,8 @@ class TaskElement(BPMNElement):
     Attributes:
         execution_listeners (list[ExecutionListener]): list of Execution Listeners of
             this element.
-    """    
+    """
+
     execution_listeners: list[ExecutionListener]
 
 
