@@ -17,7 +17,7 @@ class BPMNParser:
 
 
     Args:
-        file_path (Path): path of bpmn file.
+        file_path (Union[Path, str]): path of bpmn file.
     """
 
     def __init__(self, file_path: Union[Path, str]):
