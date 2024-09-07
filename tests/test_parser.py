@@ -16,6 +16,13 @@ def test_not_bpmn_file():
 
 
 def test_repr(bpmn_parser):
+    assert repr(bpmn_parser.exclusive_gateway) == 'ExclusiveGateway(items=10)'
+    assert (
+        repr(bpmn_parser.intermediate_catch_event) == 'IntermediateCatchEvent(items=2)'
+    )
+    assert repr(bpmn_parser.sequence_flow) == 'SequenceFlow(items=24)'
+    assert repr(bpmn_parser.service_task) == 'ServiceTask(items=4)'
+    assert repr(bpmn_parser.user_task) == 'UserTask(items=2)'
     assert repr(bpmn_parser) == (
         'BPMNParser('
         'service_task=4, '
@@ -28,6 +35,7 @@ def test_repr(bpmn_parser):
     )
 
 
+@patch('bpmn_parser.parser.BPMNParser.__delattr__')
 @patch('bpmn_parser.parser.BPMNParser.exclusive_gateway')
 @patch('bpmn_parser.parser.BPMNParser.intermediate_catch_event')
 @patch('bpmn_parser.parser.BPMNParser.sequence_flow')
@@ -41,6 +49,7 @@ def test_refresh(
     mocked_sequence_flow: MagicMock,
     mocked_intermediate_catch_event: MagicMock,
     mocked_exclusive_gateway: MagicMock,
+    mocked_delattr: MagicMock,
     bpmn_parser,
 ):
     mocked_parse.return_value.getroot.return_value.base = 'resources/flow2.bpmn'
@@ -61,3 +70,4 @@ def test_refresh(
     mocked_sequence_flow.__len__.assert_called_once()
     mocked_intermediate_catch_event.__len__.assert_called_once()
     mocked_exclusive_gateway.__len__.assert_called_once()
+    assert mocked_delattr.call_count == 5
