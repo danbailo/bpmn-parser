@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 from lxml.etree import _Element
 
@@ -27,14 +28,18 @@ class ServiceTask(Task):
 
     def __init__(self, root: _Element):
         super().__init__(root)
+        self._items: Optional[list[ServiceTaskElement]] = None
 
     @property
     def list(self):
-        items = []
+        if self._items is not None:
+            return self._items
+
+        self._items = []
         for service_task in self.root.xpath(
             '//bpmn:serviceTask', namespaces={'bpmn': self.bpmn_tag}
         ):
-            items.append(
+            self._items.append(
                 ServiceTaskElement(
                     id=service_task.get('id'),
                     name=service_task.get('name'),
@@ -43,4 +48,4 @@ class ServiceTask(Task):
                     execution_listeners=self._get_execution_listeners(service_task),
                 )
             )
-        return items
+        return self._items

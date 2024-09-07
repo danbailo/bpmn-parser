@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 from lxml.etree import _Element
 
@@ -25,17 +26,21 @@ class IntermediateCatchEvent(Task):
 
     def __init__(self, root: _Element):
         super().__init__(root)
+        self._items: Optional[list[IntermediateCatchEventElement]] = None
 
     @property
     def list(self):
-        items = []
+        if self._items is not None:
+            return self._items
+
+        self._items = []
         for intermediate_catch_event in self.root.xpath(
             '//bpmn:intermediateCatchEvent', namespaces={'bpmn': self.bpmn_tag}
         ):
             time_duration = intermediate_catch_event.xpath(
                 './/bpmn:timeDuration', namespaces={'bpmn': self.bpmn_tag}
             )
-            items.append(
+            self._items.append(
                 IntermediateCatchEventElement(
                     id=intermediate_catch_event.get('id'),
                     name=intermediate_catch_event.get('name'),
@@ -45,4 +50,4 @@ class IntermediateCatchEvent(Task):
                     ),
                 )
             )
-        return items
+        return self._items
