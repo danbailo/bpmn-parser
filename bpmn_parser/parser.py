@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Union
+from typing import Optional, Union
 
 from lxml.etree import XMLParser, _Element, _ElementTree, parse
 
@@ -32,36 +32,77 @@ class BPMNParser:
         self.tree: _ElementTree = parse(file_path, self.xml_parser)
         self.root: _Element = self.tree.getroot()
 
+        self._service_task: Optional[ServiceTask] = None
+        self._user_task: Optional[UserTask] = None
+        self._sequence_flow: Optional[SequenceFlow] = None
+        self._intermediate_catch_event: Optional[IntermediateCatchEvent] = None
+        self._exclusive_gateway: Optional[ExclusiveGateway] = None
+
     @property
     def service_task(self):
         """Parse all Service Tasks from this BPMN."""
-        return ServiceTask(self.root)
+        if self._service_task is not None:
+            return self._service_task
+
+        self._service_task = ServiceTask(self.root)
+        return self._service_task
 
     @property
     def user_task(self):
         """Parse all User Task from this BPMN."""
-        return UserTask(self.root)
+        if self._user_task is not None:
+            return self._user_task
+
+        self._user_task = UserTask(self.root)
+        return self._user_task
 
     @property
     def sequence_flow(self):
         """Parse all Sequence Flow from this BPMN."""
-        return SequenceFlow(self.root)
+        if self._sequence_flow is not None:
+            return self._sequence_flow
+
+        self._sequence_flow = SequenceFlow(self.root)
+        return self._sequence_flow
 
     @property
     def intermediate_catch_event(self):
         """Parse all Intermediate Catch Event from this BPMN."""
-        return IntermediateCatchEvent(self.root)
+        if self._intermediate_catch_event is not None:
+            return self._intermediate_catch_event
+
+        self._intermediate_catch_event = IntermediateCatchEvent(self.root)
+        return self._intermediate_catch_event
 
     @property
     def exclusive_gateway(self):
         """Parse all Exclusive Gateway from this BPMN."""
-        return ExclusiveGateway(self.root)
+        if self._exclusive_gateway is not None:
+            return self._exclusive_gateway
+
+        self._exclusive_gateway = ExclusiveGateway(self.root)
+        return self._exclusive_gateway
 
     @property
     def refresh(self):
         """Refresh the BPMN if the file get some modify."""
         self.tree = parse(self.file_path, self.xml_parser)
         self.root = self.tree.getroot()
+
+        del self._service_task
+        self._service_task = None
+
+        del self._user_task
+        self._user_task = None
+
+        del self._sequence_flow
+        self._sequence_flow = None
+
+        del self._intermediate_catch_event
+        self._intermediate_catch_event = None
+
+        del self._exclusive_gateway
+        self._exclusive_gateway = None
 
     def __repr__(self) -> str:
         return (

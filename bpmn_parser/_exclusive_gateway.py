@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 from lxml.etree import _Element
 
@@ -21,17 +22,21 @@ class ExclusiveGateway(Task):
 
     def __init__(self, root: _Element):
         super().__init__(root)
+        self._items: Optional[list[ExclusiveGatewayElement]] = None
 
     @property
     def list(self):
-        items = []
+        if self._items is not None:
+            return self._items
+
+        self._items = []
         for exclusive_gateway in self.root.xpath(
             '//bpmn:exclusiveGateway', namespaces={'bpmn': self.bpmn_tag}
         ):
-            items.append(
+            self._items.append(
                 ExclusiveGatewayElement(
                     id=exclusive_gateway.get('id'),
                     name=exclusive_gateway.get('name'),
                 )
             )
-        return items
+        return self._items

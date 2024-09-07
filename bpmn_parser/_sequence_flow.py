@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Union
+from typing import Optional, Union
 
 from lxml.etree import _Element
 
@@ -44,10 +44,14 @@ class SequenceFlow(Task):
 
     def __init__(self, root: _Element):
         super().__init__(root)
+        self._items: Optional[list[SequenceFlowElement]] = None
 
     @property
     def list(self):
-        items = []
+        if self._items is not None:
+            return self._items
+
+        self._items = []
         for sequence_flow in self.root.xpath(
             '//bpmn:sequenceFlow', namespaces={'bpmn': self.bpmn_tag}
         ):
@@ -60,15 +64,14 @@ class SequenceFlow(Task):
                     ),
                     condition=condition_expression[0].text,
                 )
-            else:
-                condition_expression = None
-            items.append(
+
+            self._items.append(
                 SequenceFlowElement(
                     id=sequence_flow.get('id'),
                     name=sequence_flow.get('name'),
                     source_ref=sequence_flow.get('sourceRef'),
                     target_ref=sequence_flow.get('targetRef'),
-                    condition_expression=condition_expression,
+                    condition_expression=condition_expression or None,
                 )
             )
-        return items
+        return self._items
